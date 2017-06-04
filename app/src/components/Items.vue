@@ -16,7 +16,6 @@ export default {
     const itemsservice = api.service('items');
     itemsservice.on('created', () => {
       this.$store.dispatch('loadItemsAsync').then(() => {
-        console.log('we got some created shit');
       });
     });
     this.$store.dispatch('loadItemsAsync');
