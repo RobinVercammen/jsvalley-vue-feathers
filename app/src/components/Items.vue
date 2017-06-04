@@ -18,7 +18,6 @@ export default {
       this.$store.dispatch('loadItemsAsync').then(() => {
       });
     });
-    this.$store.dispatch('loadItemsAsync');
   },
   methods: {
     ...mapActions(['addItemAsync']),

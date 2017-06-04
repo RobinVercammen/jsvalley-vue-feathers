@@ -9,6 +9,12 @@
     <div>
       <button type="submit">Login</button>
     </div>
+    or
+    <div>
+      <router-link tag="button" to="{name:'Register'}">
+        Registeren
+      </router-link>
+    </div>
   </form>
 </template>
 
@@ -25,7 +31,9 @@ export default {
         strategy: 'local',
         email,
         password,
-      }).then(console.log, console.log);
+      }).then(() => {
+        this.$router.push({ name: 'Items' });
+      }, console.log);
     },
   },
 };

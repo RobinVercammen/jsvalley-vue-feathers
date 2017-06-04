@@ -15,8 +15,10 @@ export default {
     client.authenticate({
       strategy: 'jwt',
       accessToken,
-    }).then(() =>
-      this.$router.push({ name: 'Items' })
+    }).then(() => {
+      this.$router.push({ name: 'Items' });
+      this.$store.dispatch('loadItemsAsync');
+    }
       , () => this.$router.push({ name: 'Login' }));
   },
 };
