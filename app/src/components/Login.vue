@@ -11,7 +11,7 @@
     </div>
     or
     <div>
-      <router-link tag="button" to="{name:'Register'}">
+      <router-link tag="button" :to="{name:'Register'}">
         Registeren
       </router-link>
     </div>
