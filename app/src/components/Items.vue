@@ -1,36 +1,31 @@
 <template>
   <ul>
-    <li v-for="item in items">{{item}}</li>
-    <form v-on:submit.prevent="add">
+    <li v-for="item in items">{{item.text}}</li>
+    <form v-on:submit.prevent="addItemAsync">
       <input type="text" name="item">
       <button type="submit"></button>
     </form>
   </ul>
 </template>
 <script>
+import { mapState, mapActions } from 'vuex';
 import api from '../common/api';
 
 export default {
   created() {
     const itemsservice = api.service('items');
     itemsservice.on('created', () => {
-      itemsservice.find().then((items) => {
-        console.log(items);
-        this.items = items.data.map(i => i.text);
+      this.$store.dispatch('loadItemsAsync').then(() => {
+        console.log('we got some created shit');
       });
     });
-
-    this.items = ['bla'];
+    this.$store.dispatch('loadItemsAsync');
   },
-  data: () => ({
-    items: ['test', 'test'],
-  }),
   methods: {
-    add($event) {
-      const text = $event.target.item.value;
-      const itemsservice = api.service('items');
-      itemsservice.create({ text });
-    },
+    ...mapActions(['addItemAsync']),
+  },
+  computed: {
+    ...mapState(['items']),
   },
 };
 </script>
