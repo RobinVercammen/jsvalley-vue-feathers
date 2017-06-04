@@ -1,7 +1,7 @@
 const loadItems = (state, items) => {
-  const x = state;
-  x.items = items;
-  return x;
+  /* eslint-disable */
+  state.items = items;
+  /* eslint-enable */
 };
 
 export default { loadItems };
